@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Journal Model [Post Type]
  * Plugin URI: https://www.bonseo.es/
- * Description: Modelo de Viaje por carretera
+ * Description: Modelo de Diario de Viaje
  * Author: jjlmoya
  * Author URI: https://www.bonseo.es/
  * Version: 1.0.0
