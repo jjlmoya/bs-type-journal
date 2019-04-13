@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) {
 require_once plugin_dir_path(__FILE__) . '/Journal.php';
 function bs_journal_get_post_type()
 {
-	return Journal::getInstance('Diario', 'diarios', "diario",
+	return Journal::getInstance('Diario', 'Diarios', "diario",
 		array()
 	);
 }
