@@ -128,4 +128,3 @@ function bs_journal_on_save($post_id)
 
 add_action('init', 'bs_journal_register_post_type');
 add_action('save_post', 'bs_journal_on_save');
-bs_journal_create_custom_params();
