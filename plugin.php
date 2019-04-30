@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Journal Model [Post Type]
  * Plugin URI: https://www.bonseo.es/
- * Description: Modelo de Diario de Viaje
+ * Description: Modelo de Diario
  * Author: jjlmoya
  * Author URI: https://www.bonseo.es/
  * Version: 1.0.0
@@ -19,7 +19,13 @@ require_once plugin_dir_path(__FILE__) . '/Journal.php';
 function bs_journal_get_post_type()
 {
 	return Journal::getInstance('Diario', 'Diarios', "diario",
-		array()
+		array(
+			"days" => array(
+				"name" => "Días",
+				"value" => "days",
+				"input" => "text"
+			)
+		)
 	);
 }
 
@@ -65,9 +71,12 @@ function bs_journal_register_post_type()
 
 function bs_journal_create_custom_params()
 {
+
 	$model = bs_journal_get_post_type();
-	foreach ($model->customFields as $customField) {
-		add_action('add_meta_boxes', $model->nameSpace . '_' . $customField["value"] . '_register');
+	if ($model->customFields) {
+		foreach ($model->customFields as $customField) {
+			add_action('add_meta_boxes', $model->nameSpace . '_' . $customField["value"] . '_register');
+		}
 	}
 }
 
@@ -126,5 +135,16 @@ function bs_journal_on_save($post_id)
 	}
 }
 
+function bs_journal_days_register()
+{
+	bs_journal_register('days');
+}
+
+function bs_journal_days_callback()
+{
+	bs_journal_callback('days');
+}
+
 add_action('init', 'bs_journal_register_post_type');
 add_action('save_post', 'bs_journal_on_save');
+bs_journal_create_custom_params();
